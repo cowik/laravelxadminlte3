@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.content');
+    return view('login');
+});
+
+Route::get('/login', 'AuthController@login')->name('login');
+Route::post('/postlogin', 'AuthController@postlogin');
+Route::get('/logout', 'AuthController@logout');
+
+Route::group(['middleware' => 'auth'],function(){
+    Route::get('/home', 'HomeController@index');
 });
