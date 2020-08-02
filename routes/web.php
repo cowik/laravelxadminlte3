@@ -21,4 +21,13 @@ Route::get('/logout', 'AuthController@logout');
 
 Route::group(['middleware' => 'auth'],function(){
     Route::get('/home', 'HomeController@index');
+
+    //Students
+    Route::get('/students','StudentsController@index');
+    Route::post('/students/insert', 'StudentsController@insert');
+    Route::get('/students/{id}/edit','StudentsController@edit');
+    Route::post('/students/{id}/update','StudentsController@update');
+    Route::get('/students/{id}/delete','StudentsController@delete');
 });
+
+

@@ -17,8 +17,9 @@
   <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet">
-  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="/adminlte/plugins/toastr/toastr.min.css">
+  
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -29,14 +30,6 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <!-- Flashdata Login Gagal -->
-      @if(Session::has('gagal'))
-      <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-        {{Session::get('gagal')}}
-      </div> 
-      @endif
-      <!-- End Flashdata Login Gagal -->
       <!-- <p class="login-box-msg">Sign in to start your session</p> -->
       <form action="/postlogin" method="POST">
       {{csrf_field()}}
@@ -103,8 +96,15 @@
 <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="./adminlte/dist/js/adminlte.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-@include('sweet::alert')
+<!-- Toastr -->
+<script src="/adminlte/plugins/toastr/toastr.min.js"></script>
+<!-- SweetAlert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+@if(Session::has('failed'))
+    swal("Sorry!", "{{Session::get('failed')}}", "error");
+@endif
+</script>
 </body>
 </html>
+

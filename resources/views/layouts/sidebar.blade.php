@@ -30,6 +30,28 @@
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chalkboard-teacher"></i>
+              <p>
+                Students
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right"></span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/students" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
   </div>
   <!-- /.sidebar -->
 </aside>
