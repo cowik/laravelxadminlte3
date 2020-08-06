@@ -19,15 +19,24 @@ Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/postlogin', 'AuthController@postlogin');
 Route::get('/logout', 'AuthController@logout');
 
-Route::group(['middleware' => 'auth'],function(){
+Route::group(['middleware' => ['auth', 'checkRole:superadmin']],function(){
+
+    //Users
+    Route::get('/users','UsersController@index');
+    Route::post('/users/insert','UsersController@insert');
+    Route::get('/users/{user}/edit','UsersController@edit');
+    Route::post('/users/{user}/update','UsersController@update');
+    Route::get('/users/{user}/delete','UsersController@delete');
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin']],function(){
+
     Route::get('/home', 'HomeController@index');
 
     //Students
     Route::get('/students','StudentsController@index');
-    Route::post('/students/insert', 'StudentsController@insert');
-    Route::get('/students/{id}/edit','StudentsController@edit');
-    Route::post('/students/{id}/update','StudentsController@update');
-    Route::get('/students/{id}/delete','StudentsController@delete');
+    Route::post('/students/insert','StudentsController@insert');
+    Route::get('/students/{students}/edit','StudentsController@edit');
+    Route::post('/students/{students}/update','StudentsController@update');
+    Route::get('/students/{students}/delete','StudentsController@delete');
 });
-
-

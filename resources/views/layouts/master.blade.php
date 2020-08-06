@@ -117,6 +117,23 @@
       });
     })
 </script>
+<script>
+    $('.deleteuser').click(function(){
+      var userid = $(this).attr('userid');
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location = "/users/"+userid+"/delete";
+        }
+      });
+    })
+</script>
 
 </body>
 </html>

@@ -6,12 +6,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Edit Student</h1>
+        <h1>Edit User</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="/home">Home</a></li>
-          <li class="breadcrumb-item active">Edit Students</li>
+          <li class="breadcrumb-item active">Edit User</li>
         </ol>
       </div>
     </div>
@@ -39,35 +39,30 @@
               <div class="card-header">
               </div>
               <!-- /.card-header -->
-              <form action="/students/{{$students->id}}/update" method="POST">
+              <form action="/users/{{$user->id}}/update" method="POST">
               {{csrf_field()}}
                 <div class="card-body">
                     <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" name="username" placeholder="Your username ..." value="{{$user->username}}">
+                    </div>
+                    <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name" placeholder="Your name ..." value="{{$students->name}}">
+                        <input type="text" class="form-control" name="name" placeholder="Your name ..." value="{{$user->name}}">
                     </div>
                     <div class="form-group">
-                    <label>Gender</label>
-                    <select class="form-control select2" name="gender" style="width: 100%;">
-                        <option value="{{$students->gender}}" selected="selected">{{$students->gender}}</option>
-                        <option value="Perempuan">Perempuan</option>
-                        <option value="Other">Other</option>
+                        <label>Email</label>
+                        <input type="text" class="form-control" name="email" placeholder="Your email ..." value="{{$user->email}}">
+                    </div>
+                    <div class="form-group">
+                    <label>Role</label>
+                    <select class="form-control select2" name="role" style="width: 100%;">
+                        <option value="{{$user->role}}" selected="selected">{{$user->role}}</option>
+                        <option value="superadmin">superadmin</option>
+                        <option value="admin">admin</option>
+                        <option value="user">user</option>
+                        <option value="guest">guest</option>
                     </select>
-                    </div>
-                    <div class="form-group">
-                    <label>Religion</label>
-                    <select class="form-control select2" name="religion" style="width: 100%;">
-                        <option value="{{$students->religion}}" selected="selected">{{$students->religion}}</option>
-                        <option value="Kristen">Kristen</option>
-                        <option value="Katholik">Katholik</option>
-                        <option value="Budha">Budha</option>
-                        <option value="Hindu">Hindu</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Address</label>
-                        <textarea class="form-control" name="address" rows="3">{{$students->address}}</textarea>
                     </div>
                 <!-- /.card-body -->
 

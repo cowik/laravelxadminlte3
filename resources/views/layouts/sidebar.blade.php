@@ -32,24 +32,26 @@
     <!-- /.sidebar-menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        @if(auth()->user()->role == "superadmin" OR auth()->user()->role == "admin")
         <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chalkboard-teacher"></i>
-              <p>
-                Students
-                <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right"></span>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/students" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          <a href="/students" class="nav-link">
+            <i class="nav-icon fas fa-chalkboard-teacher"></i>
+            <p>
+              Students
+            </p>
+          </a>
+        </li>
+        @endif
+        @if(auth()->user()->role == "superadmin")
+        <li class="nav-item has-treeview">
+          <a href="/users" class="nav-link">
+            <i class="nav-icon fas fa-people-carry"></i>
+            <p>
+              Users
+            </p>
+          </a>
+        </li>
+        @endif
         </ul>
       </nav>
   </div>

@@ -6,12 +6,12 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Students</h1>
+        <h1>Users</h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="/home">Home</a></li>
-          <li class="breadcrumb-item active">Students</li>
+          <li class="breadcrumb-item active">Users</li>
         </ol>
       </div>
     </div>
@@ -25,7 +25,7 @@
   <div class="card">
     <div class="card-header">
       <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">
-            Add Student
+            Add User
       </button>
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -37,9 +37,9 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Gender</th>
-                    <th>Religion</th>
-                    <th>Address</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -47,21 +47,21 @@
                 @foreach($data as $data)
                 <tr>
                     <td>{{$data->name}}</td>
-                    <td>{{$data->gender}}</td>
-                    <td>{{$data->religion}}</td>
-                    <td>{{$data->address}}</td>
+                    <td>{{$data->username}}</td>
+                    <td>{{$data->email}}</td>
+                    <td>{{$data->role}}</td>
                     <td class="project-actions text-left">
                         <a class="btn btn-primary btn-sm" href="#">
                             <i class="fas fa-folder">
                             </i>
                             View
                         </a>
-                        <a class="btn btn-info btn-sm" href="/students/{{$data->id}}/edit">
+                        <a class="btn btn-info btn-sm" href="/users/{{$data->id}}/edit">
                             <i class="fas fa-pencil-alt">
                             </i>
                             Edit
                         </a>
-                        <a class="btn btn-danger btn-sm delete" href="#" studentsid="{{$data->id}}">
+                        <a class="btn btn-danger btn-sm deleteuser" href="#" userid="{{$data->id}}">
                             <i class="fas fa-trash">
                             </i>
                             Delete
@@ -89,39 +89,36 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="/students/insert" method="POST">
+        <form action="/users/insert" method="POST">
         {{csrf_field()}}
         <div class="modal-body">
             <div class="card-body">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" name="username" placeholder="Your username ...">
+                </div>
                 <div class="form-group">
                     <label>Name</label>
                     <input type="text" class="form-control" name="name" placeholder="Your name ...">
                 </div>
                 <div class="form-group">
-                  <label>Gender</label>
-                  <select class="form-control select2" name="gender" style="width: 100%;">
-                    <option value="Laki-laki" selected="selected">Laki-laki</option>
-                    <option value="Perempuan">Perempuan</option>
-                    <option value="Other">Other</option>
+                    <label>Email</label>
+                    <input type="text" class="form-control" name="email" placeholder="Your email ...">
+                </div>
+                <div class="form-group">
+                  <label>Role</label>
+                  <select class="form-control select2" name="role" style="width: 100%;">
+                    <option value="superdadmin" selected="selected">superdadmin</option>
+                    <option value="admin">admin</option>
+                    <option value="user">user</option>
+                    <option value="guest">guest</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label>Religion</label>
-                  <select class="form-control select2" name="religion" style="width: 100%;">
-                    <option value="Islam" selected="selected">Islam</option>
-                    <option value="Kristen">Kristen</option>
-                    <option value="Katholik">Katholik</option>
-                    <option value="Budha">Budha</option>
-                    <option value="Hindu">Hindu</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                    <label>Address</label>
-                    <textarea class="form-control" name="address" rows="3"></textarea>
+                    <label>Password</label>
+                    <input type="text" class="form-control" name="password" placeholder="Your password ...">
                 </div>
             </div>
-            
         </div>
         <div class="modal-footer justify-content-between">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -133,9 +130,6 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
-  <script>
-      swal("Hello world!");
-  </script>
 
 </section>
 <!-- /.content -->
