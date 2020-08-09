@@ -12,6 +12,31 @@ class UsersController extends Controller
         return view('users/users',['data' => $data]);
     }
 
+    public function getusers(){
+        $users = \App\User::select('users.*');
+
+        return \DataTables::eloquent($users)
+        ->addColumn('action',function($s){
+            return '<a class="btn btn-primary btn-sm" href="#">
+                        <i class="fas fa-folder">
+                        </i>
+                        View
+                    </a>
+                    <a class="btn btn-info btn-sm" href="/users/'.$s->id.'/edit">
+                        <i class="fas fa-pencil-alt">
+                        </i>
+                        Edit
+                    </a>
+                    <a class="btn btn-danger btn-sm deleteuser" href="#" userid="'.$s->id.'">
+                        <i class="fas fa-trash">
+                        </i>
+                        Delete
+                    </a>';
+        })
+        ->rawColumns(['action'])
+        ->toJson();
+    }
+
     public function insert(Request $request){
         $user = new \App\User;
         $user->username = $request->username;

@@ -23,6 +23,10 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin']],function(){
 
     //Users
     Route::get('/users','UsersController@index');
+    Route::get('getusers', [
+        'uses' => 'UsersController@getusers',
+        'as' => 'ajax.get.data.users',
+    ]);
     Route::post('/users/insert','UsersController@insert');
     Route::get('/users/{user}/edit','UsersController@edit');
     Route::post('/users/{user}/update','UsersController@update');
@@ -35,6 +39,10 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin']],function()
 
     //Students
     Route::get('/students','StudentsController@index');
+    Route::get('getstudents', [
+        'uses' => 'StudentsController@getstudents',
+        'as' => 'ajax.get.data.students',
+    ]);
     Route::post('/students/insert','StudentsController@insert');
     Route::get('/students/{students}/edit','StudentsController@edit');
     Route::post('/students/{students}/update','StudentsController@update');

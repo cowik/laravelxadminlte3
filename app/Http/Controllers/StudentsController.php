@@ -9,12 +9,37 @@ class StudentsController extends Controller
 {
     public function index(){
         $data = \App\Students::all();
-        return view('students/students',['data' => $data]);
+        return view('students/students');
+    }
+
+    public function getstudents(){
+        $students = \App\Students::select('students.*');
+
+        return \DataTables::eloquent($students)
+        ->addColumn('action',function($s){
+            return '<a class="btn btn-primary btn-sm" href="#">
+                        <i class="fas fa-folder">
+                        </i>
+                        View
+                    </a>
+                    <a class="btn btn-info btn-sm" href="/students/'.$s->id.'/edit">
+                        <i class="fas fa-pencil-alt">
+                        </i>
+                        Edit
+                    </a>
+                    <a class="btn btn-danger btn-sm delete" href="#" studentsid="'.$s->id.'">
+                        <i class="fas fa-trash">
+                        </i>
+                        Delete
+                    </a>';
+        })
+        ->rawColumns(['action'])
+        ->toJson();
     }
 
     public function insert(Request $request){
         \App\Students::create($request->all());
-        return redirect('students/students')->with('success', 'Input Success !');
+        return redirect('students')->with('success', 'Input Success !');
     }
 
     public function edit(Students $students){

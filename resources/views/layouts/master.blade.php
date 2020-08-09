@@ -83,6 +83,44 @@
       "autoWidth": false,
       "responsive": true,
     });
+    $('#students').DataTable({
+      "processing": true,
+      "serverside":true,
+      "ajax": "{{route('ajax.get.data.students')}}",
+      "columns":[
+        {data:'name',name:'name'},
+        {data:'gender',gender:'gender'},
+        {data:'religion',religion:'religion'},
+        {data:'address',address:'address'},
+        {data:'action',action:'action'}
+      ],
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+    $('#users').DataTable({
+      "processing": true,
+      "serverside":true,
+      "ajax": "{{route('ajax.get.data.users')}}",
+      "columns":[
+        {data:'name',name:'name'},
+        {data:'username',username:'username'},
+        {data:'email',email:'email'},
+        {data:'role',role:'role'},
+        {data:'action',action:'action'}
+      ],
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
   });
 </script>
 <script>
@@ -101,7 +139,7 @@
 @endif
 </script>
 <script>
-    $('.delete').click(function(){
+    $('body').on('click','.delete',function(){
       var studentsid = $(this).attr('studentsid');
       swal({
         title: "Are you sure?",
@@ -115,7 +153,7 @@
           window.location = "/students/"+studentsid+"/delete";
         }
       });
-    })
+    });
 </script>
 <script>
     $('.deleteuser').click(function(){

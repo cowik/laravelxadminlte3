@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="card-body">
-        <table id="example2" class="table table-bordered table-hover">
+        <table id="students" class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -44,32 +44,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($data as $data)
-                <tr>
-                    <td>{{$data->name}}</td>
-                    <td>{{$data->gender}}</td>
-                    <td>{{$data->religion}}</td>
-                    <td>{{$data->address}}</td>
-                    <td class="project-actions text-left">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm" href="/students/{{$data->id}}/edit">
-                            <i class="fas fa-pencil-alt">
-                            </i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm delete" href="#" studentsid="{{$data->id}}">
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-                @endforeach  
-            </tfoot>
+            </tbody>
         </table>
     </div>
     <!-- /.card-body -->
