@@ -43,6 +43,10 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin']],function()
         'uses' => 'StudentsController@getstudents',
         'as' => 'ajax.get.data.students',
     ]);
+    Route::get('search', [
+        'uses' => 'StudentsController@search',
+        'as' => 'ajax.search.data.students',
+    ]);
     Route::post('/students/insert','StudentsController@insert');
     Route::get('/students/{students}/edit','StudentsController@edit');
     Route::post('/students/{students}/update','StudentsController@update');

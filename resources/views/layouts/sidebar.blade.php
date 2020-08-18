@@ -6,7 +6,7 @@
           alt="AdminLTE Logo"
           class="brand-image img-circle elevation-3"
           style="opacity: .8">
-    <span class="brand-text font-weight-light">Laravel X AdminLTE 3</span>
+    <span class="brand-text font-weight-light">Students Dashboard</span>
   </a>
 
   <!-- Sidebar -->

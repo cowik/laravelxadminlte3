@@ -33,6 +33,24 @@
       </div>
     </div>
     <div class="card-body">
+      <!-- <form action="" id="search-form" method="GET">
+      <table>
+        <tr>
+          <td>Name</td>
+          <td>&nbsp; &nbsp;</td>
+          <td>&nbsp; &nbsp;</td>
+          <td>&nbsp; &nbsp;</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <input class="typeahead form-control" name="name" id="name" type="text">
+          </td>
+          <td>&nbsp; &nbsp;</td>
+          <td><button type="submit" class="btn btn-primary" name="submit">Search</button></td>
+        </tr>
+      </table>
+      </form><br> -->
         <table id="students" class="table table-bordered table-hover">
             <thead>
                 <tr>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Laravel X AdminLTE 3</title>
+  <title>Project Laravel Wikrama</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,7 +23,10 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
 </head>
+
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
@@ -65,11 +68,21 @@
 <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
 <!-- SweetAlert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- TypeHead -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 <!-- page script -->
 <script>
-  $(function () {
+  $(document).ready(function() {
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
@@ -83,10 +96,16 @@
       "autoWidth": false,
       "responsive": true,
     });
-    $('#students').DataTable({
+    var tablestudents = $('#students').DataTable({
       "processing": true,
       "serverside":true,
-      "ajax": "{{route('ajax.get.data.students')}}",
+      // "ajax": "{{route('ajax.get.data.students')}}",
+      "ajax": {
+          "url": "{{route('ajax.get.data.students')}}",
+          "data": function (d) {
+              
+          }
+      },
       "columns":[
         {data:'name',name:'name'},
         {data:'gender',gender:'gender'},
@@ -94,9 +113,18 @@
         {data:'address',address:'address'},
         {data:'action',action:'action'}
       ],
+      "dom": 'Bfrtip',
+      "buttons": [{
+        "extend": 'excel',
+        "text": 'Save as Excel',
+        "className": 'btn btn-primary',
+        "exportOptions": {
+          "columns": 'th:not(:last-child)'
+        }
+      }],
       "paging": true,
       "lengthChange": false,
-      "searching": true,
+      "searching": false,
       "ordering": true,
       "info": true,
       "autoWidth": false,
@@ -121,6 +149,16 @@
       "autoWidth": false,
       "responsive": true,
     });
+  });
+</script>
+<script>
+  var path = "{{route('ajax.search.data.students')}}";
+  $('input.typeahead').typeahead({
+    source:  function (query, process) {
+      return $.get(path, { query: query }, function (data) {
+          return process(data);
+      });
+    }
   });
 </script>
 <script>
