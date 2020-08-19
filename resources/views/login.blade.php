@@ -29,19 +29,11 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <!-- Flashdata Login Gagal -->
-      @if(Session::has('gagal'))
-      <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-        {{Session::get('gagal')}}
-      </div> 
-      @endif
-      <!-- End Flashdata Login Gagal -->
       <!-- <p class="login-box-msg">Sign in to start your session</p> -->
       <form action="/postlogin" method="POST">
       {{csrf_field()}}
         <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control" placeholder="Email">
+          <input type="text" name="username" class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -103,8 +95,12 @@
 <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="./adminlte/dist/js/adminlte.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-@include('sweet::alert')
+<!-- SweetAlert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+@if(Session::has('failed'))
+    swal("Sorry!", "{{Session::get('failed')}}", "error");
+@endif
+</script>
 </body>
 </html>
